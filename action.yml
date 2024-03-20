@@ -1,0 +1,41 @@
+name: 'Veracode Pipeline Scan Resutls'
+description: 'Process Veracode Pipeline Scan Results and close a check run on GitHub'
+author: 'Vincent Deng'
+inputs:
+  action:
+    description: 'Action to take'
+    required: true
+  vid:
+    description: 'Veracode ID'
+    required: true
+  vkey:
+    description: 'Veracode Key'
+    required: true
+  appname:
+    description: 'Veracode Application Name'
+    required: true
+  token:
+    description: 'your GITHUB_TOKEN'
+    required: false
+  check_run_id:
+    description: 'GitHub Check Run ID'
+    required: false
+  source_repository:
+    description: 'Source Repository'
+    required: false
+  fail_checks_on_policy:
+    description: 'Fail Checks if Policy Fails'
+    required: false
+  fail_checks_on_error:
+    description: 'Fail Checks if there are Build Errors'
+    required: false
+  filter_mitigated_flaws:
+    description: 'Filter pipeline scan results based on mitigated flaws (true) or all policy flaws (false)'
+    required: false
+    default: false
+  sandboxname:
+    description: 'Sandbox Name'
+    required: false
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
